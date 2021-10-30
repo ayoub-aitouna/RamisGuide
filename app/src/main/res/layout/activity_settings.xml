@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20sp"
+    tools:context=".Activities.Settings"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginVertical="20dp"
+        android:text="Settings"
+        android:textSize="21sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="3dp"
+                        android:layout_weight="1"
+                        android:background="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="Theme" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="3dp"
+                        android:layout_weight="1"
+                        android:background="@color/black" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/dark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="Dark"
+                        android:text="Dark" />
+
+                    <RadioButton
+                        android:id="@+id/light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="Light"
+                        android:text="Light" />
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="3dp"
+                        android:layout_weight="1"
+                        android:background="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="Text Size" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="3dp"
+                        android:layout_weight="1"
+                        android:background="@color/black" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="Small"
+                        android:text="24px"
+                        tools:ignore="PxUsage" />
+
+                    <RadioButton
+                        android:id="@+id/Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="Medium"
+                        android:text="34px"
+                        tools:ignore="PxUsage" />
+
+                    <RadioButton
+                        android:id="@+id/Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="Large"
+                        android:text="64px"
+                        tools:ignore="PxUsage" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/native_ad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/next"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:background="@drawable/next" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
