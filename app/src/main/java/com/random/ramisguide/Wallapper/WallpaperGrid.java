@@ -19,9 +19,10 @@ public class WallpaperGrid extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallpaper_grid);
-        initRecycler();
         adManager = (MyApplication) getApplicationContext();
         adManager.initAds(this);
+
+        initRecycler();
         adManager.ShowBanner(findViewById(R.id.banner));
         findViewById(R.id.goback).setOnClickListener(v -> {
             finish();

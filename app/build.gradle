@@ -49,7 +49,7 @@ dependencies {
     implementation 'com.appodeal.ads:sdk:2.10.2.+'
 
 
-    implementation 'com.yandex.android:mobileads:4.3.0'
+    implementation 'com.yandex.android:mobileads:4.4.0'
     implementation 'com.yandex.android:mobmetricalib:3.20.1'
     //Tapdaq
     implementation 'com.tapdaq.sdk:Tapdaq-BaseSDK:7.9.0'
@@ -70,11 +70,7 @@ dependencies {
 
 
 
-    implementation platform('com.google.firebase:firebase-bom:28.4.2')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
     implementation 'com.squareup.picasso:picasso:(insert latest version)'
 
 
@@ -82,8 +78,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
-
-    implementation 'com.github.sujithkanna:smileyrating:2.0.0'
 
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.ironsource.adapters:facebookadapter:4.3.30'

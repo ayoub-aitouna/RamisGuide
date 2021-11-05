@@ -267,13 +267,13 @@ public class Network_FacebookAd {
             @Override
             public void onRewardedVideoCompleted() {
                 Log.d(TAG, "Rewarded video completed!");
-                callBack.call("", 0);
+
 
             }
 
             @Override
             public void onRewardedVideoClosed() {
-                callBack.error();
+                callBack.call("", 0);
                 Log.d(TAG, "Rewarded video ad closed!");
             }
         };

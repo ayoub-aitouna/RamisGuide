@@ -292,7 +292,7 @@ public class Network_AppDeal {
 
             @Override
             public void onRewardedVideoFinished(double v, String s) {
-                call.call("", 0);
+                //call.call("", 0);
             }
 
             @Override

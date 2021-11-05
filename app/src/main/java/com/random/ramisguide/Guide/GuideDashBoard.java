@@ -14,16 +14,14 @@ import com.random.ramisguide.R;
 
 public class GuideDashBoard extends AppCompatActivity {
     MyApplication adManager;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide_dash_board);
-        initRecycler();
         adManager = (MyApplication) getApplicationContext();
         adManager.initAds(this);
         adManager.ShowBanner(findViewById(R.id.banner));
+        initRecycler();
         findViewById(R.id.goback).setOnClickListener(v -> finish());
 
     }

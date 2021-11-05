@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -115,29 +117,8 @@ public class MyApplication extends Application {
         networkAppDeal = new Network_AppDeal(activity);
         taqdaq = new Taqdaq(activity);
         networkFacebookAd = new Network_FacebookAd(activity);
-//        Config.controls.NativeType = "Tapdaq";
-//        Config.controls.BannerType = "Tapdaq";
-//        Config.controls.InterType = "Tapdaq";
-//        Config.controls.RewardType = "Tapdaq";
-//        Config.controls.IsTapdaqAppON = true;
-//        Config.controls.Tapdaq_App_id = "617d5ae008fe6c2d735d721d";
-//        Config.controls.setTapdaq_client_key("53a81a6b-346a-4661-b055-69a2658bc09b");
     }
 
-
-    public void ShowOPenAds(InterCallback call) {
-        ProgressDialog dialog = new ProgressDialog(activity);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Loading  Please wait...");
-        dialog.setIndeterminate(true);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-        if (Config.controls.IsAdmobON)
-            admobAds.showOpenAd(() -> {
-                if (dialog.isShowing()) dialog.dismiss();
-                call.call();
-            });
-    }
 
     public void ShowBanner(FrameLayout layout) {
         switch (Config.controls.BannerType) {
@@ -185,101 +166,111 @@ public class MyApplication extends Application {
 
 
     public void ShowInter(InterCallback callback) {
-        ProgressDialog dialog = new ProgressDialog(activity);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Loading  Please wait...");
-        dialog.setIndeterminate(true);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-        switch (Config.controls.InterType) {
-            case "Admob":
-                if (Config.controls.IsAdmobON) {
-                    admobAds.showInterstitial(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            case "Facebook":
-                if (Config.controls.IsFacebookON) {
-                    networkFacebookAd.ShowInter(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            case "Unity":
-                if (Config.controls.IsUnityON) {
-                    networkUnityAd.ShowInter(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            case "Appodeal":
-                if (Config.controls.IsAppoDealON) {
-                    networkAppDeal.ShowInter(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            case "Network_StartApp":
-                if (Config.controls.IsStartAppON) {
-                    networkStartApp.ShowInter(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            case "Network_Yandex":
-                if (Config.controls.IsYandexON) {
-                    networkYandex.ShowInter(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            case "iron":
-                if (Config.controls.IsIronON) {
-                    ironSource.show_interstitial_ad(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            case "Tapdaq":
-                if (Config.controls.getTapdaqAppON()) {
-                    taqdaq.loadInter(() -> {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                        callback.call();
-                    });
-                }
-                break;
-            default:
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
-                callback.call();
-                break;
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                ProgressDialog dialog = new ProgressDialog(activity);
+                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                dialog.setMessage("Loading  Please wait...");
+                dialog.setIndeterminate(true);
+                dialog.setCanceledOnTouchOutside(false);
+                if (!activity.isFinishing()) {
+                    dialog.show();
+                    switch (Config.controls.InterType) {
+                        case "Admob":
+                            if (Config.controls.IsAdmobON) {
+                                admobAds.showInterstitial(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        case "Facebook":
+                            if (Config.controls.IsFacebookON) {
+                                networkFacebookAd.ShowInter(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        case "Unity":
+                            if (Config.controls.IsUnityON) {
+                                networkUnityAd.ShowInter(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        case "Appodeal":
+                            if (Config.controls.IsAppoDealON) {
+                                networkAppDeal.ShowInter(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        case "Network_StartApp":
+                            if (Config.controls.IsStartAppON) {
+                                networkStartApp.ShowInter(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        case "Network_Yandex":
+                            if (Config.controls.IsYandexON) {
+                                networkYandex.ShowInter(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        case "iron":
+                            if (Config.controls.IsIronON) {
+                                ironSource.show_interstitial_ad(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        case "Tapdaq":
+                            if (Config.controls.getTapdaqAppON()) {
+                                taqdaq.loadInter(() -> {
+                                    if (dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
+                                    callback.call();
+                                });
+                            }
+                            break;
+                        default:
+                            if (dialog.isShowing()) {
+                                dialog.dismiss();
+                            }
+                            callback.call();
+                            break;
 
-        }
+                    }
+                } else {
+                    callback.call();
+                }
+            }
+        });
+
     }
 
     public void ShowReward(RewardCall call) {

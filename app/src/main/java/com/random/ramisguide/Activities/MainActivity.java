@@ -27,12 +27,6 @@ public class MainActivity extends AppCompatActivity {
         adManager.ShowNative(findViewById(R.id.native_ad));
         adManager.ShowBanner(findViewById(R.id.banner));
         adManager.ShowReview(this);
-        adManager.ShowOPenAds(new InterCallback() {
-            @Override
-            public void call() {
-
-            }
-        });
         initRecycler();
         findViewById(R.id.start).setOnClickListener(v -> {
             adManager.ShowInter(() -> {

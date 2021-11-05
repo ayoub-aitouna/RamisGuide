@@ -3,6 +3,8 @@ package com.random.ramisguide.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +36,6 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperAdapter.Hold
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.context = parent.getContext();
-        app.initAds((Activity) parent.getContext());
         return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.wallpaper_item, parent, false));
     }
 
@@ -48,7 +49,13 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperAdapter.Hold
         holder.itemView.setOnClickListener(v -> {
             Intent view = new Intent(context, WallpaperView.class);
             view.putExtra("Url", wallapapers.get(position).getUrl());
-            app.ShowInter(() -> context.startActivity(view));
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    app.ShowInter(() -> context.startActivity(view));
+
+                }
+            });
         });
     }
 

@@ -169,13 +169,12 @@ public class Network_Admob {
                                 @Override
                                 public void onAdDismissedFullScreenContent() {
                                     Log.d(TAG, "Ad was dismissed.");
-                                    callBack.error();
+                                    callBack.call("", 0);
                                     mRewardedAd = null;
                                 }
                             });
                             mRewardedAd.show(mActivity, rewardItem -> {
                                 Log.d(TAG, "The user earned the reward.");
-                                callBack.call(rewardItem.getType(), rewardItem.getAmount());
                             });
                         } else {
                             Log.d(TAG, "The rewarded ad wasn't ready yet.");

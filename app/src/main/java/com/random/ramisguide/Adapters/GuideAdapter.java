@@ -3,6 +3,8 @@ package com.random.ramisguide.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,8 +46,6 @@ public class GuideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.context = parent.getContext();
-        MyApplication adManager = (MyApplication) parent.getContext();
-        adManager.initAds((Activity) parent.getContext());
         if (viewType == 1)
             return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.guide_item, parent, false));
         return new NativeHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.native_item, parent, false));
@@ -65,7 +65,13 @@ public class GuideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             holder.itemView.setOnClickListener(v -> {
                 Intent view = new Intent(context, GuideView.class);
                 view.putExtra("position", position);
-                app.ShowInter(() -> context.startActivity(view));
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        app.ShowInter(() -> context.startActivity(view));
+                    }
+                });
+
             });
         } else {
             NativeHolder nativeHolder = (NativeHolder) holder;
